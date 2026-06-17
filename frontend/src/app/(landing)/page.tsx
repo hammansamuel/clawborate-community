@@ -27,6 +27,7 @@ const translations = {
     googleLogin: 'Sign in with Google',
     register: 'Sign up',
     login: 'Already have an account?',
+    about: 'About',
   },
   zh: {
     title: 'AI 团队协作平台',
@@ -34,6 +35,7 @@ const translations = {
     googleLogin: '使用 Google 账号登录',
     register: '免费注册',
     login: '已有账号？登录',
+    about: '关于',
   },
 }
 
@@ -83,10 +85,14 @@ export default function LandingPage() {
           position: isMobile ? 'static' : 'absolute',
           top: 40,
           left: 72,
+          right: isMobile ? undefined : 40,
           display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
           gap: 8,
           marginBottom: isMobile ? 24 : 0,
         }}>
+        <div style={{ display: 'flex', gap: 8 }}>
           <button
             onClick={() => setLang('zh')}
             style={{
@@ -119,6 +125,21 @@ export default function LandingPage() {
           >
             EN
           </button>
+        </div>
+        <Link
+          href="/about"
+          style={{
+            fontSize: 13,
+            color: '#666',
+            textDecoration: 'none',
+            fontWeight: 500,
+            whiteSpace: 'nowrap',
+          }}
+          onMouseOver={e => (e.currentTarget.style.textDecoration = 'underline')}
+          onMouseOut={e => (e.currentTarget.style.textDecoration = 'none')}
+        >
+          {t.about}
+        </Link>
         </div>
 
         <div>
@@ -183,7 +204,20 @@ export default function LandingPage() {
           )}
 
           <div style={{ display: 'flex', flexDirection: 'column', marginTop: 20 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16 }}>
+              <Link
+                href="/about"
+                style={{
+                  fontSize: 13,
+                  color: '#999',
+                  textDecoration: 'none',
+                  fontWeight: 500,
+                }}
+                onMouseOver={e => (e.currentTarget.style.color = '#666')}
+                onMouseOut={e => (e.currentTarget.style.color = '#999')}
+              >
+                {t.about}
+              </Link>
               <Link
                 href="/login"
                 style={{

@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Link from 'next/link'
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ''
 
@@ -25,6 +26,7 @@ const translations = {
     signupClosedTitle: 'Sign up is not open yet',
     signupClosedMessage: 'Sign up is not open yet. Please check back later.',
     close: 'Close',
+    about: 'About Clawborate',
   },
   zh: {
     brand: 'Clawborate',
@@ -47,6 +49,7 @@ const translations = {
     signupClosedTitle: '注册尚未开放',
     signupClosedMessage: '注册尚未开放，请稍后再试。',
     close: '关闭',
+    about: '关于 Clawborate',
   },
 }
 
@@ -136,6 +139,22 @@ export default function RegisterPage() {
           EN
         </button>
       </div>
+      <Link
+        href="/about"
+        style={{
+          position: 'absolute',
+          top: 40,
+          right: 72,
+          fontSize: 13,
+          color: '#666',
+          textDecoration: 'none',
+          fontWeight: 500,
+        }}
+        onMouseOver={e => (e.currentTarget.style.textDecoration = 'underline')}
+        onMouseOut={e => (e.currentTarget.style.textDecoration = 'none')}
+      >
+        {t.about}
+      </Link>
 
       <div style={{ width: 400, padding: 40 }}>
         <div style={{ marginBottom: 32 }}>
@@ -365,7 +384,18 @@ export default function RegisterPage() {
           </a>
         </p>
 
-        <p style={{ textAlign: 'center', marginTop: 16, fontSize: 11, color: '#bbb' }}>
+        <p style={{ textAlign: 'center', marginTop: 16, fontSize: 13 }}>
+          <Link
+            href="/about"
+            style={{ color: '#999', textDecoration: 'none', fontWeight: 500 }}
+            onMouseOver={e => (e.currentTarget.style.textDecoration = 'underline')}
+            onMouseOut={e => (e.currentTarget.style.textDecoration = 'none')}
+          >
+            {t.about}
+          </Link>
+        </p>
+
+        <p style={{ textAlign: 'center', marginTop: 12, fontSize: 11, color: '#bbb' }}>
           {t.terms}
         </p>
       </div>

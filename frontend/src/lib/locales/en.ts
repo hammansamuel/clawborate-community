@@ -1,5 +1,5 @@
 const en = {
-  nav: { teams: 'Teams', tasks: 'Tasks' },
+  nav: { teams: 'Teams', tasks: 'Tasks', about: 'About' },
   teams: {
     title: 'My Teams', subtitle: 'Manage your AI Agent teams',
     newTeam: '+ New Team', openTeam: 'Open Team →', rename: 'Rename', delete: 'Delete',

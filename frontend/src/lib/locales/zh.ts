@@ -1,7 +1,7 @@
 import type { Translations } from './en'
 
 const zh: Translations = {
-  nav: { teams: '团队', tasks: '任务' },
+  nav: { teams: '团队', tasks: '任务', about: '关于' },
   teams: {
     title: '我的团队', subtitle: '管理你的 AI Agent 团队',
     newTeam: '+ 新建团队', openTeam: '进入团队 →', rename: '重命名', delete: '删除',

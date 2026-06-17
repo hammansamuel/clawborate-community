@@ -27,6 +27,7 @@ export default function Header({ awaitingDecisions = 0 }: { awaitingDecisions?: 
             <span style={{ position: 'absolute', top: -2, right: -6, background: '#D29922', color: '#fff', borderRadius: '50%', width: 16, height: 16, fontSize: 10, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{awaitingDecisions}</span>
           )}
         </Link>
+        <Link href="/about" style={{ padding: '6px 12px', borderRadius: 6, fontSize: 14, color: 'var(--text-secondary)' }}>{t.nav.about}</Link>
       </nav>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
         <button onClick={toggleLang} style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid var(--border-default)', background: 'transparent', color: 'var(--text-primary)', fontSize: 12, fontWeight: 500, cursor: 'pointer' }}>

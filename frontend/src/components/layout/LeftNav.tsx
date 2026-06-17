@@ -16,7 +16,8 @@
  * Unread counts stay in sync via GlobalUnreadWS.
  */
 import { useEffect, useRef, useState } from 'react'
-import { Plus, Brain, ChevronUp, Search, Sun, Moon, Settings, LogOut, Languages } from 'lucide-react'
+import Link from 'next/link'
+import { Plus, Brain, ChevronUp, Search, Sun, Moon, Settings, LogOut, Languages, Info } from 'lucide-react'
 import { GlobalUnreadWS } from '@/lib/ws'
 import { useAuth } from '@/hooks/useAuth'
 import { useTheme } from '@/hooks/useTheme'
@@ -105,6 +106,10 @@ export default function LeftNav({
         <button onClick={onExperts} title={lang === 'zh' ? '专家' : 'Experts'} style={{ width: 32, height: 32, background: 'none', border: '1px solid var(--border-default)', borderRadius: 6, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <Brain size={14} color="var(--text-secondary)" />
         </button>
+        {/* About */}
+        <Link href="/about" title={lang === 'zh' ? '关于' : 'About'} style={{ width: 32, height: 32, background: 'none', border: '1px solid var(--border-default)', borderRadius: 6, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <Info size={14} color="var(--text-secondary)" />
+        </Link>
         {/* Team avatars */}
         {teams.map(team => {
           const badge = unread[team.id] ?? 0
@@ -160,6 +165,15 @@ export default function LeftNav({
         <Brain size={15} style={{ flexShrink: 0 }} />
         <span>{lang === 'zh' ? '专家' : 'Experts'}</span>
       </div>
+
+      {/* ── About nav item ── */}
+      <Link href="/about"
+        style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 10px', borderRadius: 6, color: 'var(--text-secondary)', fontSize: 13, textDecoration: 'none', transition: 'background 0.15s, color 0.15s' }}
+        onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'var(--bg-card)'; el.style.color = 'var(--text-primary)' }}
+        onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = ''; el.style.color = 'var(--text-secondary)' }}>
+        <Info size={15} style={{ flexShrink: 0 }} />
+        <span>{lang === 'zh' ? '关于' : 'About'}</span>
+      </Link>
 
       {/* ── Teams section label ── */}
       <div style={{ fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.8px', color: 'var(--text-muted)', padding: '8px 10px 4px' }}>
