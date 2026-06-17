@@ -36,7 +36,7 @@ const STATUS_COLORS: Record<string, string> = {
 // ── component ──────────────────────────────────────────────────────────────
 
 export default function TemplateCard({
-  id, name, description, screenshot_url, is_recommended,
+  id, name, description: _description, screenshot_url, is_recommended,
   approval_status, rating, rating_count, contributor_name,
   created_at, tags, is_admin, onApprove, onReject,
 }: TemplateCardProps) {

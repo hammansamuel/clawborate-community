@@ -49,7 +49,7 @@ const STATUS_DOT: Record<string, string> = {
   dead:     '#F85149',
 }
 
-export default function RightChatPanel({ team, width = 420 }: Props) {
+export default function RightChatPanel({ team, width: _width = 420 }: Props) {
   const { lang } = useLang()
   const { theme } = useTheme()
   const [agents, setAgents] = useState<Agent[]>([])

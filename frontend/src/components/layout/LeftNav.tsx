@@ -15,9 +15,8 @@
  * Collapses to a 52px icon rail on screens ≤ 767px.
  * Unread counts stay in sync via GlobalUnreadWS.
  */
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Plus, Brain, ChevronUp, Search, Sun, Moon, Settings, LogOut, Languages } from 'lucide-react'
-import { api } from '@/lib/api'
 import { GlobalUnreadWS } from '@/lib/ws'
 import { useAuth } from '@/hooks/useAuth'
 import { useTheme } from '@/hooks/useTheme'

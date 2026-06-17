@@ -25,7 +25,8 @@ export function useTheme() {
         // Set theme in iframe's localStorage (Open WebUI reads this on load)
         owWindow.localStorage.setItem('theme', next)
         // Trigger storage event for real-time update without reload
-        owWindow.dispatchEvent(new (owWindow as any).StorageEvent('storage', {
+        const { StorageEvent: IframeStorageEvent } = owWindow as Window & { StorageEvent: typeof StorageEvent }
+        owWindow.dispatchEvent(new IframeStorageEvent('storage', {
           key: 'theme',
           newValue: next
         }))

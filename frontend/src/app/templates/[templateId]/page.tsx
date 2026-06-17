@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { marked } from 'marked'
-import { api, TemplateAgent } from '@/lib/api'
+import { TemplateAgent } from '@/lib/api'
 
 // ── Types ────────────────────────────────────────────────────────────────
 
@@ -102,7 +101,6 @@ function SkeletonPage() {
 // ── Page ─────────────────────────────────────────────────────────────────
 
 export default function TemplateDetailPage({ params }: { params: Promise<{ templateId: string }> }) {
-  const router = useRouter()
   const [templateId, setTemplateId] = useState('')
   const [data, setData] = useState<TemplateDetail | null>(null)
   const [state, setState] = useState<FetchState>('loading')

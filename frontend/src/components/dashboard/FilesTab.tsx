@@ -14,7 +14,7 @@
  *   - Loading skeleton + empty state
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Upload, Trash2, Download, File, FileText, FileImage, FileCode, FilePlus, MoreHorizontal, PenLine, Copy, Share2, X, Eye, ChevronRight, ChevronDown } from 'lucide-react'
+import { Trash2, Download, File, FileText, FileImage, FileCode, FilePlus, MoreHorizontal, PenLine, Copy, Share2, X, Eye, ChevronRight, ChevronDown } from 'lucide-react'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 import { api } from '@/lib/api'
@@ -412,7 +412,7 @@ export default function FilesTab({ teamId }: { teamId: string }) {
     try {
       const data = await api.listTeamFiles(teamId)
       setFiles(data.files)
-    } catch (e) {
+    } catch {
       setError(lang === 'zh' ? '加载失败' : 'Failed to load files')
     } finally {
       setLoading(false)

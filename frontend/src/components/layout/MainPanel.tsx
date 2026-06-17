@@ -42,20 +42,6 @@ interface Props {
   expertTrigger?: number
 }
 
-function PlaceholderSection({ title, rows }: { title: string; rows: string[] }) {
-  return (
-    <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-default)', borderRadius: 12, padding: '20px', marginBottom: 16 }}>
-      <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 12 }}>{title}</div>
-      {rows.map((w, i) => (
-        <div key={i} style={{ height: 36, background: 'var(--bg-card)', borderRadius: 6, marginBottom: i < rows.length - 1 ? 8 : 0, display: 'flex', alignItems: 'center', padding: '0 12px', gap: 10 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--border-default)', flexShrink: 0 }} />
-          <div style={{ height: 10, borderRadius: 5, background: 'var(--border-default)', width: w }} />
-        </div>
-      ))}
-    </div>
-  )
-}
-
 export default function MainPanel({ team, onTeamDeleted, expertTrigger }: Props) {
   const { lang } = useLang()
   const { isTeamAdmin } = useAuth()

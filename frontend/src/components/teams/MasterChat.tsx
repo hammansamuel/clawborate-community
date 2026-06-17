@@ -12,8 +12,6 @@ import { getT } from '@/lib/locales'
 import { api } from '@/lib/api'
 import type { Lang } from '@/lib/locales'
 import type { AgentStatus } from '@/types'
-import type { ChatMessage } from '@/types/chat'
-
 interface Props {
   teamId: string
   masterId: string

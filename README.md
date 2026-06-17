@@ -5,36 +5,28 @@ Clawborate is a platform for creating and managing collaborative AI agent teams.
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  Browser (:3000)                                        │
-└──────────────┬──────────────────────────────────────────┘
-               │
-┌──────────────▼──────────────────────────────────────────┐
-│  Nginx                                                  │
-│  ├── /          → Frontend (Next.js)                    │
-│  ├── /api/      → Backend                               │
-│  └── /ow/       → Open WebUI (chat interface)           │
-└──────┬─────────────────┬────────────────────┬───────────┘
-       │                 │                    │
-┌──────▼───────┐  ┌──────▼───────┐  ┌────────▼──────────┐
-│  Frontend    │  │  Backend     │  │  Open WebUI       │
-│  (Next.js)   │  │  (Python)    │  │  (chat UI)        │
-└──────────────┘  └──────┬───────┘  └───────────────────┘
-                         │
-               ┌─────────▼─────────┐
-               │  PostgreSQL       │
-               └─────────┬─────────┘
-                         │
-          ┌──────────────▼──────────────┐
-          │  Agent Containers           │
-          │  ┌────────┐ ┌────────┐      │
-          │  │Agent 1 │ │Agent 2 │      │
-          │  └────────┘ └────────┘      │
-          │  ┌────────┐ ┌────────┐      │
-          │  │Agent 3 │ │Agent N │      │
-          │  └────────┘ └────────┘      │
-          └─────────────────────────────┘
+```mermaid
+flowchart TB
+    Browser["Browser (:3000)"]
+    Nginx["Nginx<br/>/ → Frontend · /api/ → Backend · /ow/ → Open WebUI"]
+    Frontend["Frontend (Next.js)"]
+    Backend["Backend (Python)"]
+    OpenWebUI["Open WebUI (chat UI)"]
+    Postgres["PostgreSQL"]
+
+    subgraph Agents["Agent Containers (Docker)"]
+        A1["Agent 1"]
+        A2["Agent 2"]
+        A3["Agent 3"]
+        AN["Agent N"]
+    end
+
+    Browser --> Nginx
+    Nginx --> Frontend
+    Nginx --> Backend
+    Nginx --> OpenWebUI
+    Backend --> Postgres
+    Backend --> Agents
 ```
 
 **Backend** manages teams, spawns agent containers via Docker API, and bridges chat between users and agents.
@@ -60,7 +52,7 @@ Clawborate is a platform for creating and managing collaborative AI agent teams.
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/sammyhuang/clawborate-community.git
+git clone https://github.com/clawborate/clawborate-community.git
 cd clawborate-community
 
 # 2. Create your environment file
@@ -134,6 +126,10 @@ docker compose down
 # Full reset (wipes all data)
 docker compose down -v
 ```
+
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, scope, and how to open a pull request.
 
 ## License
 

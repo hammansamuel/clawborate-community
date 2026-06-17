@@ -212,7 +212,7 @@ export default function CubeAssembly() {
     const climber = () => cubes.find(c => c.isClimber)
     const displaced = () => cubes.find(c => c.isDisplaced)
 
-    function drawFaces(cw: number, word: string, tint: boolean) {
+    function _drawFaces(cw: number, word: string, tint: boolean) {
       const h = CUBE_H, d = DEPTH
       ctx!.strokeStyle = '#111'
       ctx!.lineWidth = 2

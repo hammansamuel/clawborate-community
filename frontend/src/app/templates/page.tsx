@@ -8,50 +8,10 @@ import EmptyState from '@/components/templates/EmptyState'
 import SkeletonCard from '@/components/templates/SkeletonCard'
 import type { CommunityTemplate, StatusFilterValue } from '@/components/templates/types'
 import { useAuth } from '@/hooks/useAuth'
-import { api } from '@/lib/api'
-
-const API = '/api/templates'
-
-interface TemplateApiResponse {
-  id: string
-  name: string
-  description?: string
-  source?: string
-  template_type?: string
-  content?: string
-  is_approved?: boolean
-  approval_status?: string
-  rejection_reason?: string
-  is_recommended?: boolean
-  created_by?: string
-  created_at?: string
-  updated_at?: string
-  // from community template
-  screenshot_url?: string | null
-  rating?: number | null
-  rating_count?: number
-}
+import { api, type CommunityTemplateInfo } from '@/lib/api'
 
 function isAdminRole(role: string | null): boolean {
   return role === 'platform_admin' || role === 'team_admin'
-}
-
-// Map API response to our TemplateCard props
-function toCard(t: TemplateApiResponse, userName: string, admin: boolean) {
-  return {
-    id: t.id,
-    name: t.name,
-    description: t.description ?? '',
-    screenshot_url: t.screenshot_url ?? null,
-    is_recommended: t.is_recommended ?? false,
-    approval_status: (t.approval_status ?? (t.is_approved ? 'approved' : 'pending')) as 'pending' | 'approved' | 'rejected',
-    rating: t.rating ?? null,
-    rating_count: t.rating_count ?? 0,
-    contributor_name: t.created_by ? userName : 'system',
-    created_at: t.created_at ?? new Date().toISOString(),
-    tags: t.template_type ? [t.template_type] : [],
-    is_admin: admin,
-  }
 }
 
 export default function TemplatesPage() {
@@ -70,21 +30,17 @@ export default function TemplatesPage() {
     setLoading(true)
     setError('')
     try {
-      const params = new URLSearchParams()
-      params.set('type', 'community')
-      if (status !== 'all') params.set('status', status)
-
-      let resJson: any[]
+      let data: CommunityTemplateInfo[]
       try {
-        resJson = await api.listCommunityTemplates(status !== 'all' ? { status } : { type: 'community' })
-      } catch (e: any) {
-        if (status !== 'all' && (e?.message?.includes('403') || e?.status === 403)) {
+        data = await api.listCommunityTemplates(status !== 'all' ? { status } : { type: 'community' })
+      } catch (e: unknown) {
+        const err = e as { message?: string; status?: number }
+        if (status !== 'all' && (err.message?.includes('403') || err.status === 403)) {
           setStatus('all')
           return
         }
         throw e
       }
-      const data: TemplateApiResponse[] = resJson
 
       const mapped: CommunityTemplate[] = data.map(t => ({
         id: t.id,

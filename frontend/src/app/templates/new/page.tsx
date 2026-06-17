@@ -3,7 +3,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import MarkdownEditor from '@/components/templates/MarkdownEditor'
 import { useAuth } from '@/hooks/useAuth'
-import { api, proactiveRefresh } from '@/lib/api'
+import { proactiveRefresh } from '@/lib/api'
 
 type TemplateType = 'agent' | 'team'
 

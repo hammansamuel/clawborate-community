@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ''
 
@@ -65,14 +64,13 @@ function getGoogleOAuthUrl(redirectUri: string, state: string): string {
 }
 
 export default function RegisterPage() {
-  const router = useRouter()
   const [lang, setLang] = useState<'en' | 'zh'>('en')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [error] = useState('')
   const [showSignupModal, setShowSignupModal] = useState(false)
 
   const t = translations[lang]
